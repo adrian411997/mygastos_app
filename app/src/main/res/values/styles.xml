@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Definición del estilo para el Spinner con color de bordes -->
+    <style name="SpinnerBorderStyle" parent="Widget.AppCompat.Spinner">
+        <item name="android:background">@drawable/spinner_border</item>
+
+        <!-- Otros atributos de estilo aquí -->
+    </style>
+
+    <!-- Definición del estilo para el Spinner con color de texto -->
+    <style name="SpinnerCombinedStyle" parent="SpinnerBorderStyle">
+        <item name="android:textColor">@color/my_spinner_text_color</item>
+        <!-- Otros atributos de estilo aquí -->
+    </style>
+</resources>

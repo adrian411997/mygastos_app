@@ -76,7 +76,7 @@ public class HomeFragment extends Fragment {
                 String selectedMonth = parentView.getItemAtPosition(position).toString();
 
                 List<gastosList> gastosBySelectedMonth = databaseHelper.getGastosByMonth(selectedMonth);
-                Log.d("HomeFragment", "Número de elementos en la lista filtrada: " + gastosBySelectedMonth.size());
+                //Log.d("HomeFragment", "Número de elementos en la lista filtrada: " + gastosBySelectedMonth.size());
 
                 // Configurar el RecyclerView con los gastos filtrados
                 ListAdapter listAdapter = new ListAdapter(gastosBySelectedMonth, context);
