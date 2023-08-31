@@ -8,4 +8,8 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="transparent">#00000000</color>
+    <color name="my_spinner_text_color">#FF000000</color>
+    <color name="background_app">#303030</color>
+    <color name="background_spinner">#303030</color>
+    <color name="background_toolbar">#7092BE</color>
 </resources>

@@ -56,8 +56,6 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
                 String totalStr = String.valueOf(databaseHelper.calcularTotalGastosPorMes(months.getSelectedItem().toString()));
                 total.setText("$".concat(totalStr));
             }
-
-
         });
     }
 

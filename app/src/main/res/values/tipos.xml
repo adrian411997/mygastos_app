@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="tipos_array">
+        <item>Alimentos</item>
+        <item>Automovil</item>
+        <item>Hogar</item>
+        <item>Servicios</item>
+        <item>Varios</item>
+    </string-array>
+</resources>

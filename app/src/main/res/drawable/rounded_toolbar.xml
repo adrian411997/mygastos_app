@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/background_toolbar" /> <!-- Color de fondo del Toolbar -->
+            <corners android:radius="0dp" /> <!-- Radio 0dp para las esquinas superiores -->
+        </shape>
+    </item>
+    <item android:bottom="8dp"> <!-- Espacio para bordes inferiores redondeados -->
+        <shape android:shape="rectangle">
+            <solid android:color="@color/background_toolbar" /> <!-- Color de fondo del Toolbar -->
+            <corners android:topLeftRadius="16dp" android:topRightRadius="16dp" /> <!-- Bordes inferiores redondeados -->
+        </shape>
+    </item>
+</layer-list>

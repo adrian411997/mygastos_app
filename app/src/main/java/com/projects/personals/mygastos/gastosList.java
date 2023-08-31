@@ -1,6 +1,6 @@
 package com.projects.personals.mygastos;
 
-import java.util.Date;
+
 
 public class gastosList {
     public int id;
