@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity2">
+
+
+    <EditText
+        android:id="@+id/nameInput"
+        android:layout_width="250dp"
+        android:layout_height="57dp"
+        android:layout_marginTop="25dp"
+        android:ems="10"
+        android:hint="Nombre del gasto"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <EditText
+        android:id="@+id/montoInput"
+        android:layout_width="250dp"
+        android:layout_height="57dp"
+        android:layout_marginTop="25dp"
+        android:ems="10"
+        android:hint="Monto"
+        android:inputType="numberDecimal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nameInput"></EditText>
+
+    <EditText
+        android:id="@+id/typeInput"
+        android:layout_width="250dp"
+        android:layout_height="57dp"
+        android:layout_marginTop="25dp"
+        android:ems="10"
+        android:hint="Tipos"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/montoInput"></EditText>
+    <LinearLayout
+        android:id="@+id/selects"
+        app:layout_constraintTop_toBottomOf="@+id/typeInput"
+        android:layout_width="300dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="25dp"
+        android:layout_centerVertical="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+        <EditText
+            android:id="@+id/selectFieldYear"
+            android:layout_marginTop="28dp"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:hint="Año"
+            android:inputType="number"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+
+            />
+        <Spinner
+        android:id="@+id/selectFieldMonth"
+        android:layout_marginTop="25dp"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:hint="Seleccione el mes"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+
+        />
+
+        <EditText
+            android:id="@+id/selectFieldDay"
+            android:layout_marginTop="28dp"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:hint="Dia"
+            android:inputType="number"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+
+            />
+</LinearLayout>
+
+
+    <Button
+        android:id="@+id/successInput"
+        android:layout_width="150dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="50dp"
+        android:onClick="AddGasto"
+        android:text="Agregar"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/selects"></Button>
+</androidx.constraintlayout.widget.ConstraintLayout>
