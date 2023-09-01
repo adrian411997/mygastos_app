@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.Calendar;
 import java.util.List;
 
 public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
@@ -69,6 +70,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
 
         ViewHolder(View itemView ){
             super(itemView);
+
             monto = itemView.findViewById(R.id.viewMonto);
             name = itemView.findViewById(R.id.viewName);
             fecha = itemView.findViewById(R.id.viewFecha);
@@ -76,8 +78,10 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
             itemIdTextView = itemView.findViewById(R.id.itemId); // Inicializar el TextView
         }
         void bindData(final gastosList item){
+            Calendar calendar = Calendar.getInstance();
+            int currentMonth = calendar.get(Calendar.MONTH);
             String date = String.valueOf(item.getYear());
-            String dateComplete = date.concat("/").concat(item.getMes()).concat("/").concat(String.valueOf(item.getDia()));
+            String dateComplete = date.concat("/").concat(String.valueOf(currentMonth)).concat("/").concat(String.valueOf(item.getDia()));
             name.setText(item.getNombre());
             String signo = "$";
             monto.setText(signo.concat(String.valueOf(item.getMonto())));
