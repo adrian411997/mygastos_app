@@ -42,6 +42,7 @@ public class HomeFragment extends Fragment {
         Context context = requireContext();
         databaseHelper = new DatabaseHelper(context);
         Spinner monthSpinner = root.findViewById(R.id.selectMonthsPanel);
+        Spinner orderSpinner = root.findViewById(R.id.orderSpinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
                 context, R.array.months_array, android.R.layout.simple_spinner_item);
 
@@ -51,6 +52,14 @@ public class HomeFragment extends Fragment {
         // Aplicar el ArrayAdapter al Spinner
         monthSpinner.setAdapter(adapter);
 
+        ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(
+                context, R.array.orders_array, android.R.layout.simple_spinner_item);
+
+        // Especificar el diseño para los elementos desplegables
+        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        // Aplicar el ArrayAdapter al Spinner
+        orderSpinner.setAdapter(adapter2);
         // Obtener el mes actual
         Calendar calendar = Calendar.getInstance();
         int currentMonth = calendar.get(Calendar.MONTH);
@@ -59,7 +68,7 @@ public class HomeFragment extends Fragment {
         monthSpinner.setSelection(currentMonth);
 
         List<gastosList> listaGasto = databaseHelper.getGastosByMonth(monthSpinner.getSelectedItem().toString());
-        Log.d("MainActivity", "Número de elementos en la lista: " + listaGasto.size());
+
         RecyclerView recyclerView = root.findViewById(R.id.list);
         ListAdapter listAdapter = new ListAdapter(listaGasto, context);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
@@ -85,11 +94,45 @@ public class HomeFragment extends Fragment {
                 TextView totalMount = root.findViewById(R.id.totalAmount);
                 String total = String.valueOf(databaseHelper.calcularTotalGastosPorMes(monthSpinner.getSelectedItem().toString()));
                 totalMount.setText("$".concat(total));
+
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // No hacer nada en este caso
+            }
+        });
+        orderSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                String selectedMonth = monthSpinner.getSelectedItem().toString() ;
+                if(position == 1){
+                    String mountoOrder = Character.toLowerCase(parentView.getItemAtPosition(position).toString().charAt(0)) + parentView.getItemAtPosition(position).toString().substring(1);
+                    List<gastosList> gastosOrderedByMount = databaseHelper.orderGastosby(selectedMonth,mountoOrder);
+                    ListAdapter listAdapter = new ListAdapter(gastosOrderedByMount,context);
+                    recyclerView.setAdapter(listAdapter);
+                }else if(position == 2){
+                    String dayOrder = Character.toLowerCase(parentView.getItemAtPosition(position).toString().charAt(0)) + parentView.getItemAtPosition(position).toString().substring(1);
+                    List<gastosList> gastosOrderedByMount = databaseHelper.orderGastosby(selectedMonth,dayOrder);
+                    ListAdapter listAdapter = new ListAdapter(gastosOrderedByMount,context);
+                    recyclerView.setAdapter(listAdapter);
+                }else if(position ==3){
+                    String nameOrder ="name";
+                    List<gastosList> gastosOrderedByMount = databaseHelper.orderGastosby(selectedMonth,nameOrder);
+                    ListAdapter listAdapter = new ListAdapter(gastosOrderedByMount,context);
+                    recyclerView.setAdapter(listAdapter);
+                }else{
+                    List<gastosList> gastosBySelectedMonth = databaseHelper.getGastosByMonth(selectedMonth);
+                    //Log.d("HomeFragment", "Número de elementos en la lista filtrada: " + gastosBySelectedMonth.size());
+
+                    // Configurar el RecyclerView con los gastos filtrados
+                    ListAdapter listAdapter = new ListAdapter(gastosBySelectedMonth, context);
+                    recyclerView.setAdapter(listAdapter);
+                }
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
-                // No hacer nada en este caso
+                // Manejar caso cuando no se selecciona nada
             }
         });
         return root;
