@@ -76,4 +76,17 @@ public class gastosList {
     public void setType(String type) {
         this.type = type;
     }
+    public int getMesInt() {
+        String[] meses = {"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"};
+        int mesInt = -1; // Valor predeterminado en caso de que no se encuentre el mes
+
+        for (int i = 0; i < meses.length; i++) {
+            if (meses[i].equalsIgnoreCase(mes)) {
+                mesInt = i + 1; // Sumar 1 porque los meses se cuentan desde 1 (enero) hasta 12 (diciembre)
+                break;
+            }
+        }
+
+        return mesInt;
+    }
 }

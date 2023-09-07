@@ -44,18 +44,28 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int clickedPosition = holder.getAdapterPosition();
-                int clickedItemId = Integer.parseInt(holder.itemIdTextView.getText().toString());
-                databaseHelper.deleteGasto(clickedItemId);
-
-                mData.remove(clickedPosition);
-                notifyItemRemoved(clickedPosition);
-
                 Spinner months = view.getRootView().findViewById(R.id.selectMonthsPanel);
-                TextView total = view.getRootView().findViewById(R.id.totalAmount);
+                String[] meses = {"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"};
+                Calendar calendar = Calendar.getInstance();
+                int currentMonth = calendar.get(Calendar.MONTH);
+                boolean duda = meses[currentMonth].equals(months.getSelectedItem().toString() );
+                Log.d("MiApp",String.valueOf(duda));
+                Log.d("MiApp",meses[currentMonth]);
+                Log.d("MiApp",months.getSelectedItem().toString());
+                if(meses[currentMonth].equals(months.getSelectedItem().toString() )) {
 
-                String totalStr = String.valueOf(databaseHelper.calcularTotalGastosPorMes(months.getSelectedItem().toString()));
-                total.setText("$".concat(totalStr));
+;                   int clickedPosition = holder.getAdapterPosition();
+                    int clickedItemId = Integer.parseInt(holder.itemIdTextView.getText().toString());
+                    databaseHelper.deleteGasto(clickedItemId);
+                    mData.remove(clickedPosition);
+                    notifyItemRemoved(clickedPosition);
+
+
+                    TextView total = view.getRootView().findViewById(R.id.totalAmount);
+
+                    String totalStr = String.valueOf(databaseHelper.calcularTotalGastosPorMes(months.getSelectedItem().toString()));
+                    total.setText("$".concat(totalStr));
+                }
             }
         });
     }
@@ -78,10 +88,10 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
             itemIdTextView = itemView.findViewById(R.id.itemId); // Inicializar el TextView
         }
         void bindData(final gastosList item){
-            Calendar calendar = Calendar.getInstance();
-            int currentMonth = calendar.get(Calendar.MONTH);
+
+
             String date = String.valueOf(item.getYear());
-            String dateComplete = date.concat("/").concat(String.valueOf(currentMonth)).concat("/").concat(String.valueOf(item.getDia()));
+            String dateComplete = date.concat("/").concat(String.valueOf(item.getMesInt())).concat("/").concat(String.valueOf(item.getDia()));
             name.setText(item.getNombre());
             String signo = "$";
             monto.setText(signo.concat(String.valueOf(item.getMonto())));
